@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ananda e Felipe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .carousel-image {
+      display: none;
+    }
+    .carousel-image.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-pink-100 text-center font-sans p-6">
+  <!-- Carrossel de fotos -->
+  <div class="relative w-full max-w-xl mx-auto">
+    <img src=".//Photos/1.jpeg" class="carousel-image active w-full rounded-xl shadow-lg" />
+    <img src=".//Photos/2.jpeg" class="carousel-image w-full rounded-xl shadow-lg" />
+    <img src=".//Photos/3.jpeg" class="carousel-image w-full rounded-xl shadow-lg" />
+	<img src=".//Photos/4.jpeg" class="carousel-image w-full rounded-xl shadow-lg" />
+    <div class="flex justify-between absolute top-1/2 left-0 right-0 px-4">
+      <button onclick="prevSlide()" class="bg-white rounded-full p-2 shadow">⬅</button>
+      <button onclick="nextSlide()" class="bg-white rounded-full p-2 shadow">➡</button>
+    </div>
+  </div>
+
+  <!-- Nome dos namorados -->
+  <h1 class="text-3xl mt-6 font-bold text-pink-700">Felipe ❤️ Ananda</h1>
+
+  <!-- Declaração escrita à mão -->
+  <div class="mt-4">
+    <h2 class="text-xl italic text-gray-700">Minha declaração</p>
+    <!-- Substitua o src abaixo pela imagem escaneada da declaração -->
+	<hr><hr>
+	
+	<p class="text-xl italic text-gray-700"><br>Minha Ananda, <br><br>
+
+É difícil colocar em palavras tudo o que você significa pra mim, mas hoje eu quero tentar. <br>
+
+Desde que você entrou na minha vida, tudo mudou. <br>	Não falo só de momentos bonitos ou das risadas, mas da forma como você transformou o meu olhar sobre o mundo.<br> Com você, tudo ficou mais leve. Você trouxe paz nos dias difíceis, riso nos dias comuns e amor em cada pequeno gesto.
+<br>
+A sua presença é o meu lugar favorito. Você me ensina todos os dias o valor das coisas simples: um abraço, um olhar, uma conversa de madrugada. <br>Com você eu aprendi que a felicidade mora nos detalhes, nos momentos únicos que a gente vive junto e que são só nossos.
+<br>
+Ananda, você é o amor da minha vida. Meu coração te escolhe todos os dias. E eu sou grato por cada instante, por cada sonho que compartilhamos, por cada passo que damos lado a lado.
+<br>
+Te amar é a melhor parte da minha vida. <br>E construir a nossa história juntos é o que me faz acordar com o coração cheio. Obrigado por ser você, por ser luz, por ser lar.
+<br><br>
+Com todo o meu amor, Felipe Araújo</p>
+  </div>
+
+  <!-- Cronômetro desde 12/04/2025 -->
+  <div class="mt-8 text-2xl text-pink-900 font-mono">
+    <p>Estamos juntos há:</p>
+    <div id="timer" class="mt-2"></div>
+  </div>
+
+  <script>
+    // Carrossel simples
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-image');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) slide.classList.add('active');
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Cronômetro
+    const startDate = new Date('2025-04-12T00:00:00');
+
+    function updateTimer() {
+      const now = new Date();
+      let diff = now - startDate;
+
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+      diff -= years * 1000 * 60 * 60 * 24 * 365.25;
+
+      const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+      diff -= months * 1000 * 60 * 60 * 24 * 30.44;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * 1000 * 60 * 60 * 24;
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * 1000 * 60 * 60;
+
+      const minutes = Math.floor(diff / (1000 * 60));
+      diff -= minutes * 1000 * 60;
+
+      const seconds = Math.floor(diff / 1000);
+
+      document.getElementById('timer').textContent =
+        `${years} anos, ${months} meses, ${days} dias, ${hours}h ${minutes}min ${seconds}s`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>
